@@ -1,0 +1,13 @@
+--- 
+
+- name: install karmada
+  hosts: "{{ gce_host | default('localhost') }}"
+  tasks: 
+  - name: install package requirements
+    yum: 
+        name: 
+          - git
+          - go
+        state: present
+        update_cache: true
+    become: true
