@@ -1,7 +1,7 @@
 --- 
 
-- name: install karmada
-  hosts: "{{ gce_host | default('localhost') }}"
+- name: Karmada - install OS prereqs
+  hosts: "karmada"
   tasks: 
   - name: install package requirements
     yum: 
@@ -11,3 +11,7 @@
         state: present
         update_cache: true
     become: true
+  - name: install kind
+    command: go get sigs.k8s.io/kind
+    environment:
+      PATH:"{{ ansible_env.PATH }}:$(go env GOPATH)/bin"

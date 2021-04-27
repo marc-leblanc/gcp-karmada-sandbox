@@ -58,4 +58,9 @@ resource "template_dir" "ansible_inventory" {
   vars = {
     karmada_host = google_compute_instance.karmada.network_interface.0.access_config.0.nat_ip
   }
-} 
+
+  provisioner "local-exec" {
+    command = "sleep 15; ansible-playbook -i ./ansible-inventory/inventory karmada.yaml"
+  }
+
+}
