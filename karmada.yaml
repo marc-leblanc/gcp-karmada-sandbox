@@ -2,16 +2,48 @@
 
 - name: Karmada - install OS prereqs
   hosts: "karmada"
+  vars:
+    karmada_install: true
   tasks: 
   - name: install package requirements
     yum: 
         name: 
           - git
           - go
+          - kubectl
+          - docker
+          - make
+          - openssl
         state: present
         update_cache: true
+    become: true
+  - name: Add go bin to PATH
+    lineinfile: >
+        dest=~/.bashrc
+        state=present
+        line="PATH={{ lookup('env', 'PATH') }}:$(go env GOPATH)/bin"
+    become: true
+  - name: Make sure a service is running
+    ansible.builtin.systemd:
+        state: started
+        name: docker  
     become: true
   - name: install kind
     command: go get sigs.k8s.io/kind
     environment:
-      PATH:"{{ ansible_env.PATH }}:$(go env GOPATH)/bin"
+      PATH: "{{ ansible_env.PATH }}:$(go env GOPATH)/bin"
+  - name: clone karmada repo
+    git:
+        repo: https://github.com/karmada-io/karmada
+        dest: /src/karmada
+    become: true
+  - shell: echo $(go env GOPATH)/bin
+    register: go_env
+    become: true
+  - debug: 
+      var: go_env.stdout 
+  - name: install karmada
+    shell: "source ~/.bashrc && /src/karmada/hack/local-up-karmada.sh > ~/karmada_install.log"
+    when: karmada_install | bool
+    ignore_errors: yes
+    become: true

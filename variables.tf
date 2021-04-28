@@ -33,3 +33,8 @@ variable "project_zone" {
   description = "Zone for GCE/GKE"
   default     = "northamerica-northeast1-a"
 }
+
+variable "karmada_install" {
+  description = "True/False install Karmada after host build"
+  default = true
+}
