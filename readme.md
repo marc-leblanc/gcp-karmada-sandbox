@@ -48,7 +48,7 @@ export GOOGLE_CREDENTIALS=`cat ${GCP_SERVICE_ACCOUNT_KEY} | tr '\n' ' '`
 
 ## Building the sandbox
 
-1. Define [required inputs](#terraform-inputs)
+1. Define [required inputs](#inputs)
 2. Terraform init, plan and apply
 
 
@@ -59,7 +59,7 @@ export GOOGLE_CREDENTIALS=`cat ${GCP_SERVICE_ACCOUNT_KEY} | tr '\n' ' '`
 | google | n/a |
 | template | n/a |
 
-## Inputs 
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
