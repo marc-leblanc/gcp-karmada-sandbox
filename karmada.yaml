@@ -1,13 +1,13 @@
---- 
+---
 
 - name: Karmada - install OS prereqs
   hosts: "karmada"
   vars:
     karmada_install: true
-  tasks: 
+  tasks:
   - name: install package requirements
-    yum: 
-        name: 
+    yum:
+        name:
           - git
           - go
           - kubectl
@@ -26,7 +26,7 @@
   - name: Make sure a service is running
     ansible.builtin.systemd:
         state: started
-        name: docker  
+        name: docker
     become: true
   - name: install kind
     command: go get sigs.k8s.io/kind
@@ -40,8 +40,8 @@
   - shell: echo $(go env GOPATH)/bin
     register: go_env
     become: true
-  - debug: 
-      var: go_env.stdout 
+  - debug:
+      var: go_env.stdout
   - name: install karmada
     shell: "source ~/.bashrc && /src/karmada/hack/local-up-karmada.sh > ~/karmada_install.log"
     when: karmada_install | bool

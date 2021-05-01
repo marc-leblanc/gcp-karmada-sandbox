@@ -1,6 +1,5 @@
 resource "google_compute_network" "karmada_network" {
-  name    = "karmada-network"
-  mtu     = 1500
+  name    = var.karmada_network
   project = var.gcp_project_id
 }
 
@@ -60,7 +59,7 @@ resource "template_dir" "ansible_inventory" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 15; ansible-playbook -i ./ansible-inventory/inventory karmada.yaml"
+    command = "sleep 15; ansible-playbook --extra-vars=\"karmada_install=${var.karmada_install}\" -i ./ansible-inventory/inventory karmada.yaml"
   }
 
 }
