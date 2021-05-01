@@ -20,7 +20,7 @@ This repo can be used as a Terraform module to build a simple [Karmada](https://
 
 First, set environment variables. Replace `PROJECT_ID`, `SERVICE_ACCOUNT_NAME` and `PATH_TO_KEY` with your own values.
 
-Variable | Description 
+Variable | Description
 --- | ---
 PROJECT_ID | The ID of the GCP project to use for the sandbox. [Create a project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) to obtain the ID.
 SERVICE_ACCOUNT_NAME | This is the service account that will be created to be used by Terraform
@@ -48,7 +48,7 @@ export GOOGLE_CREDENTIALS=`cat ${GCP_SERVICE_ACCOUNT_KEY} | tr '\n' ' '`
 
 ## Building the sandbox
 
-1. Define [required inputs](#inputs) 
+1. Define [required inputs](#inputs)
 2. Terraform init, plan and apply
 
 ## Providers
