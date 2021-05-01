@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
-    - uses: pre-commit/action@v2.0.2
     - uses: terraform-linters/setup-tflint@v1
       name: Setup TFLint
       with:
         tflint_version: v0.26.0
+    - uses: pre-commit/action@v2.0.2
