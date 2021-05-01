@@ -47,4 +47,8 @@ variable "karmada_network" {
 variable "karmada_gke_count" {
   description = "Number of Member clusters to build"
   default     = 1
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2e40574519e5eec49133204a87930aa8cd1abc2c
 }
