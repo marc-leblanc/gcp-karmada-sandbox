@@ -36,5 +36,16 @@ variable "project_zone" {
 
 variable "karmada_install" {
   description = "True/False install Karmada after host build"
-  default = true
+  default     = true
+}
+
+variable "karmada_network" {
+  description = "Network name for Karmada"
+  default     = "karmada-network"
+}
+
+variable "karmada_gke_count" {
+  description = "Number of Member clusters to build"
+  default     = 1
+
 }
