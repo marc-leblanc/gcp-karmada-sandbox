@@ -48,9 +48,8 @@ export GOOGLE_CREDENTIALS=`cat ${GCP_SERVICE_ACCOUNT_KEY} | tr '\n' ' '`
 
 ## Building the sandbox
 
-1. Define [required inputs](#inputs)
+1. Define [required inputs](#inputs) 
 2. Terraform init, plan and apply
-
 
 ## Providers
 
@@ -80,4 +79,3 @@ export GOOGLE_CREDENTIALS=`cat ${GCP_SERVICE_ACCOUNT_KEY} | tr '\n' ' '`
 | Name | Description |
 |------|-------------|
 | karmada\_gce\_host | n/a |
-
